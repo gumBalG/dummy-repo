@@ -1,0 +1,45 @@
+{
+  "version": "v2.9.0-beta.3",
+  "id": "e5304335-5ed8-404e-ac04-3d169de15dff",
+  "repositoryID": "00000000-0000-0000-0000-000000000000",
+  "repositoryName": "",
+  "workspaceID": "00000000-0000-0000-0000-000000000000",
+  "workspaceName": "",
+  "status": "success",
+  "errors": "",
+  "createdAt": "2024-08-24T03:17:36.854234751Z",
+  "finishedAt": "2024-08-24T03:18:11.334692086Z",
+  "analysisVulnerabilities": [
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "e5304335-5ed8-404e-ac04-3d169de15dff",
+      "createdAt": "2024-08-24T03:18:11.334742961Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "6afeaea9-ad99-45d2-b430-b66401367987",
+        "line": "70",
+        "column": "10",
+        "confidence": "LOW",
+        "file": "vuln3.java",
+        "code": "} catch (Exception e) {",
+        "details": "(1/1) * Possible vulnerability detected: Information Exposure Through An Error Message\nThe sensitive information may be valuable information on its own (such as a password), or it may be useful for launching other, more deadly attacks. For more information checkout the CWE-209 (https://cwe.mitre.org/data/definitions/209.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "HIGH",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVA-63",
+        "vulnHash": "0838087475ad58a0a580e8177b8c13fb90e8597363b332e592589c2518045130",
+        "deprecatedHashes": [
+          "4b8e007ce10de2142afef6f1add4ec15d49893661fe8d4580e832f3f5a5982b5",
+          "127164c9780c9c80dcec792f94c720eb2db674912a9a269160e15de2551bbdc6"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    }
+  ]
+}
