@@ -1,0 +1,565 @@
+{
+    "critical": [
+        {
+            "cwe_ids": [
+                "89"
+            ],
+            "id": "javascript_lang_sql_injection",
+            "title": "Unsanitized input in SQL query",
+            "description": "## Description\n\nUsing unsanitized data, such as user input or request data, or externally influenced data passed to a function, in SQL query exposes your application to SQL injection attacks. This vulnerability arises when externally controlled data is directly included in SQL statements without proper sanitation, allowing attackers to manipulate queries and access or modify data.\n\n## Remediations\n\n- **Do not** use raw SQL queries that concatenate unsanitized input directly.\n  ```javascript\n  var sqlite = new Sequelize(\"sqlite::memory:\");\n  sqlite.query(\"SELECT * FROM users WHERE ID = \" + req.params.userId); // unsafe\n  ```\n- **Do** validate all query inputs to ensure they meet expected patterns or values before using them in a query.\n  ```javascript\n  var rawId = req.params.userId\n  if !(/[0-9]+/.test(rawId)) {\n    // input is unexpected; don't make the query\n  }\n  ```\n- **Do** use prepared (or parameterized) statements for querying databases to safely include external input.\n  ```javascript\n  var sqlite = new Sequelize(\"sqlite::memory:\");\n  sqlite.query(\n    \"SELECT * FROM users WHERE ID = ?\",\n    { replacements: [req.params.userId] },\n    type: sequelize.QueryTypes.SELECT\n  )\n  ```\n\n## References\n\n- [OWASP SQL injection explained](https://owasp.org/www-community/attacks/SQL_Injection)\n- [OWASP SQL injection prevention cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_lang_sql_injection",
+            "line_number": 11,
+            "full_filename": "vuln5.js",
+            "filename": "vuln5.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 11,
+                "end": 11,
+                "column": {
+                    "start": 5,
+                    "end": 84
+                }
+            },
+            "sink": {
+                "start": 11,
+                "end": 11,
+                "column": {
+                    "start": 5,
+                    "end": 84
+                },
+                "content": ""
+            },
+            "parent_line_number": 11,
+            "fingerprint": "8742678586445d3a1be09675366bdee3_0",
+            "old_fingerprint": "8742678586445d3a1be09675366bdee3_0",
+            "code_extract": "    sequelize.query('SELECT * FROM Products WHERE name LIKE ' +  req.body.username);"
+        }
+    ],
+    "high": [
+        {
+            "cwe_ids": [
+                "79"
+            ],
+            "id": "javascript_express_cross_site_scripting",
+            "title": "Unsanitized user input in HTTP response (XSS)",
+            "description": "## Description\n\nIncluding unsanitized user input in HTTP responses exposes your application to cross-site scripting (XSS) attacks. This vulnerability allows attackers to inject malicious scripts into web pages viewed by other users.\n\n## Remediations\n\n- **Do not** include user input directly in a response. This practice can lead to XSS vulnerabilities.\n  ```javascript\n  res.send(req.body.data); // unsafe\n  ```\n- **Do** sanitize user input before including it in a response. Use library functions or frameworks designed for input sanitization to ensure that user data cannot be interpreted as executable code.\n\n## References\n\n- [OWASP Cross-Site Scripting (XSS) Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_express_cross_site_scripting",
+            "line_number": 13,
+            "full_filename": "vuln6.js",
+            "filename": "vuln6.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 13,
+                "end": 13,
+                "column": {
+                    "start": 6,
+                    "end": 47
+                }
+            },
+            "sink": {
+                "start": 13,
+                "end": 13,
+                "column": {
+                    "start": 6,
+                    "end": 47
+                },
+                "content": ""
+            },
+            "parent_line_number": 13,
+            "fingerprint": "ff42038a99f257c7e4397cff3ee28dd9_0",
+            "old_fingerprint": "ff42038a99f257c7e4397cff3ee28dd9_1",
+            "code_extract": "     res.send(\"Hello \" + escape(obj.username));"
+        },
+        {
+            "cwe_ids": [
+                "79"
+            ],
+            "id": "javascript_express_cross_site_scripting",
+            "title": "Unsanitized user input in HTTP response (XSS)",
+            "description": "## Description\n\nIncluding unsanitized user input in HTTP responses exposes your application to cross-site scripting (XSS) attacks. This vulnerability allows attackers to inject malicious scripts into web pages viewed by other users.\n\n## Remediations\n\n- **Do not** include user input directly in a response. This practice can lead to XSS vulnerabilities.\n  ```javascript\n  res.send(req.body.data); // unsafe\n  ```\n- **Do** sanitize user input before including it in a response. Use library functions or frameworks designed for input sanitization to ensure that user data cannot be interpreted as executable code.\n\n## References\n\n- [OWASP Cross-Site Scripting (XSS) Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_express_cross_site_scripting",
+            "line_number": 7,
+            "full_filename": "vuln8.js",
+            "filename": "vuln8.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 7,
+                "end": 7,
+                "column": {
+                    "start": 3,
+                    "end": 17
+                }
+            },
+            "sink": {
+                "start": 7,
+                "end": 7,
+                "column": {
+                    "start": 3,
+                    "end": 17
+                },
+                "content": ""
+            },
+            "parent_line_number": 7,
+            "fingerprint": "c729aaad883564709da05fc5f21eb799_0",
+            "old_fingerprint": "c729aaad883564709da05fc5f21eb799_0",
+            "code_extract": "  res.send(file)"
+        },
+        {
+            "cwe_ids": [
+                "79"
+            ],
+            "id": "php_lang_raw_output_using_user_input",
+            "title": "Unsanitized user input in 'echo' function (XSS)",
+            "description": "## Description\n\nIncluding unsanitized user input in responses can lead to cross-site scripting (XSS) attacks. This vulnerability exposes your application to malicious scripts injected by attackers, compromising user data and browser security.\n\n## Remediations\n\n- **Do not** include user input directly in the response. This practice can make your application vulnerable to XSS attacks.\n  ```php\n  echo \"<h1>\" . $_GET[\"title\"] . \"</h1>\" // unsafe\n  ```\n- **Do** sanitize user input before including it in a response. This step helps prevent malicious code from being executed.\n  ```php\n  echo \"<h1>\" . filter_var($_GET[\"title\"], FILTER_SANITIZE_STRING). \"</h1>\"\n  ```\n\n## References\n\n- [OWASP Cross-Site Scripting (XSS) Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/php_lang_raw_output_using_user_input",
+            "line_number": 5,
+            "full_filename": "vuln4.php",
+            "filename": "vuln4.php",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 5,
+                "end": 5,
+                "column": {
+                    "start": 1,
+                    "end": 31
+                }
+            },
+            "sink": {
+                "start": 5,
+                "end": 5,
+                "column": {
+                    "start": 1,
+                    "end": 31
+                },
+                "content": ""
+            },
+            "parent_line_number": 5,
+            "fingerprint": "172fff93fe86c6866ac945f8798fa665_0",
+            "old_fingerprint": "172fff93fe86c6866ac945f8798fa665_0",
+            "code_extract": "echo 'Hello, ' . $_GET['name']"
+        }
+    ],
+    "low": [
+        {
+            "cwe_ids": [
+                "209"
+            ],
+            "id": "java_lang_information_leakage",
+            "title": "Leakage of sensitive information in exception message",
+            "description": "## Description\n\nLeakage of sensitive information in exception messages poses a significant security risk. When an exception message is printed to the default output, it might reveal sensitive details about your application's technical setup or environment. This could potentially open the door to attacks, such as path traversal. Even more concerning is the possibility of exposing user-specific data, which could lead to serious privacy breaches.\n\n## Remediations\n\n- **Do not** print the full stack trace to the default output. This can inadvertently reveal sensitive information.\n  ```java\n  System.out.println(e); // unsafe\n  ```\n- **Do** limit error messages to only include the necessary information for understanding the issue without exposing sensitive data.\n  ```java\n  System.out.println(\"An error occurred. Please try again.\");\n  ```\n\n## References\n\n- [Web Application Security Consortium: Information Leakage](http://projects.webappsec.org/w/page/13246936/Information%20Leakage)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/java_lang_information_leakage",
+            "line_number": 72,
+            "full_filename": "vuln3.java",
+            "filename": "vuln3.java",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 72,
+                "end": 72,
+                "column": {
+                    "start": 13,
+                    "end": 32
+                }
+            },
+            "sink": {
+                "start": 72,
+                "end": 72,
+                "column": {
+                    "start": 13,
+                    "end": 32
+                },
+                "content": ""
+            },
+            "parent_line_number": 72,
+            "fingerprint": "d182d2b1ea58620aea5c5f48e905acb4_0",
+            "old_fingerprint": "d182d2b1ea58620aea5c5f48e905acb4_0",
+            "code_extract": "            e.printStackTrace();"
+        },
+        {
+            "cwe_ids": [
+                "532"
+            ],
+            "id": "java_lang_logger_leak",
+            "title": "Leakage of information in logger message",
+            "description": "## Description\n\nInformation leakage through logger messages can compromise sensitive data. This vulnerability arises when dynamic data or variables, which may contain sensitive information, are included in log messages.\n\n## Remediations\n\n- **Do not** include variables or dynamic data containing sensitive information in logger messages. This can inadvertently expose sensitive data in logs, which are often not adequately protected.\n  ```java\n  logger.info(\"user signed in: \" + user.uuid) // unsafe\n  ```\n- **Do** log static messages that do not contain dynamic variables or attributes. This minimizes the risk of accidentally logging sensitive information.\n  ```java\n  logger.info(\"user signed in\")\n  ```\n\n## References\n\n- [OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/java_lang_logger_leak",
+            "line_number": 57,
+            "full_filename": "vuln3.java",
+            "filename": "vuln3.java",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 57,
+                "end": 57,
+                "column": {
+                    "start": 9,
+                    "end": 55
+                }
+            },
+            "sink": {
+                "start": 57,
+                "end": 57,
+                "column": {
+                    "start": 9,
+                    "end": 55
+                },
+                "content": ""
+            },
+            "parent_line_number": 57,
+            "fingerprint": "0b57692c0cd616425b550684cab6d5f5_0",
+            "old_fingerprint": "0b57692c0cd616425b550684cab6d5f5_0",
+            "code_extract": "        log.info(\"jobProcessDTOS : \" + jobProcessDTOS);"
+        },
+        {
+            "cwe_ids": [
+                "532"
+            ],
+            "id": "java_lang_logger_leak",
+            "title": "Leakage of information in logger message",
+            "description": "## Description\n\nInformation leakage through logger messages can compromise sensitive data. This vulnerability arises when dynamic data or variables, which may contain sensitive information, are included in log messages.\n\n## Remediations\n\n- **Do not** include variables or dynamic data containing sensitive information in logger messages. This can inadvertently expose sensitive data in logs, which are often not adequately protected.\n  ```java\n  logger.info(\"user signed in: \" + user.uuid) // unsafe\n  ```\n- **Do** log static messages that do not contain dynamic variables or attributes. This minimizes the risk of accidentally logging sensitive information.\n  ```java\n  logger.info(\"user signed in\")\n  ```\n\n## References\n\n- [OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/java_lang_logger_leak",
+            "line_number": 71,
+            "full_filename": "vuln3.java",
+            "filename": "vuln3.java",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 71,
+                "end": 71,
+                "column": {
+                    "start": 13,
+                    "end": 38
+                }
+            },
+            "sink": {
+                "start": 71,
+                "end": 71,
+                "column": {
+                    "start": 13,
+                    "end": 38
+                },
+                "content": ""
+            },
+            "parent_line_number": 71,
+            "fingerprint": "0b57692c0cd616425b550684cab6d5f5_1",
+            "old_fingerprint": "0b57692c0cd616425b550684cab6d5f5_1",
+            "code_extract": "            log.error(e.getMessage());"
+        },
+        {
+            "cwe_ids": [
+                "532"
+            ],
+            "id": "javascript_lang_logger_leak",
+            "title": "Leakage of information in logger message",
+            "description": "## Description\n\nInformation leakage through logger messages can compromise sensitive data. This vulnerability arises when dynamic data or variables, which may contain sensitive information, are included in log messages.\n\n## Remediations\n\n- **Do not** include sensitive data directly in logger messages. This can lead to the exposure of such data in log files, which might be accessible to unauthorized individuals.\n  ```javascript\n  logger.info(`Results: ${data}`) // unsafe\n  ```\n- **Do** use logging levels appropriately to control the verbosity of log output and minimize the risk of leaking sensitive information in production environments.",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_lang_logger_leak",
+            "line_number": 21,
+            "full_filename": "vuln1.js",
+            "filename": "vuln1.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 21,
+                "end": 21,
+                "column": {
+                    "start": 29,
+                    "end": 78
+                }
+            },
+            "sink": {
+                "start": 21,
+                "end": 21,
+                "column": {
+                    "start": 29,
+                    "end": 78
+                },
+                "content": ""
+            },
+            "parent_line_number": 21,
+            "fingerprint": "48032ee1a0d624f8a6579d6b356d5bbe_0",
+            "old_fingerprint": "48032ee1a0d624f8a6579d6b356d5bbe_0",
+            "code_extract": "      .on('error', (err) => console.log(err, 'controller.url.download.error'))"
+        },
+        {
+            "cwe_ids": [
+                "532"
+            ],
+            "id": "javascript_lang_logger_leak",
+            "title": "Leakage of information in logger message",
+            "description": "## Description\n\nInformation leakage through logger messages can compromise sensitive data. This vulnerability arises when dynamic data or variables, which may contain sensitive information, are included in log messages.\n\n## Remediations\n\n- **Do not** include sensitive data directly in logger messages. This can lead to the exposure of such data in log files, which might be accessible to unauthorized individuals.\n  ```javascript\n  logger.info(`Results: ${data}`) // unsafe\n  ```\n- **Do** use logging levels appropriately to control the verbosity of log output and minimize the risk of leaking sensitive information in production environments.",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_lang_logger_leak",
+            "line_number": 21,
+            "full_filename": "vuln8.js",
+            "filename": "vuln8.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 21,
+                "end": 21,
+                "column": {
+                    "start": 3,
+                    "end": 67
+                }
+            },
+            "sink": {
+                "start": 21,
+                "end": 21,
+                "column": {
+                    "start": 3,
+                    "end": 67
+                },
+                "content": ""
+            },
+            "parent_line_number": 21,
+            "fingerprint": "5f3525972ff6bfdeb765947d14e6aac1_0",
+            "old_fingerprint": "5f3525972ff6bfdeb765947d14e6aac1_1",
+            "code_extract": "  console.log(`Example app listening at http://localhost:${port}`)"
+        }
+    ],
+    "medium": [
+        {
+            "cwe_ids": [
+                "693"
+            ],
+            "id": "javascript_express_helmet_missing",
+            "title": "Missing Helmet configuration on HTTP headers",
+            "description": "## Description\n\nHelmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately. Failing to configure Helmet for HTTP headers leaves your application vulnerable to several web attacks.\n\n## Remediations\n\n- **Do** use Helmet middleware to secure your app by adding it to your application's middleware.\n  ```javascript\n  const helmet = require(\"helmet\");\n  app.use(helmet());\n  ```\n\n## References\n\n- [Express Security Best Practices: Use Helmet](https://expressjs.com/en/advanced/best-practice-security.html#use-helmet)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_express_helmet_missing",
+            "line_number": 3,
+            "full_filename": "vuln5.js",
+            "filename": "vuln5.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 3,
+                "end": 3,
+                "column": {
+                    "start": 11,
+                    "end": 20
+                }
+            },
+            "sink": {
+                "start": 3,
+                "end": 3,
+                "column": {
+                    "start": 11,
+                    "end": 20
+                },
+                "content": ""
+            },
+            "parent_line_number": 3,
+            "fingerprint": "bc8cbb9e49ff86b1ca9a15608acc79fe_0",
+            "old_fingerprint": "bc8cbb9e49ff86b1ca9a15608acc79fe_1",
+            "code_extract": "var app = express()"
+        },
+        {
+            "cwe_ids": [
+                "693"
+            ],
+            "id": "javascript_express_helmet_missing",
+            "title": "Missing Helmet configuration on HTTP headers",
+            "description": "## Description\n\nHelmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately. Failing to configure Helmet for HTTP headers leaves your application vulnerable to several web attacks.\n\n## Remediations\n\n- **Do** use Helmet middleware to secure your app by adding it to your application's middleware.\n  ```javascript\n  const helmet = require(\"helmet\");\n  app.use(helmet());\n  ```\n\n## References\n\n- [Express Security Best Practices: Use Helmet](https://expressjs.com/en/advanced/best-practice-security.html#use-helmet)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_express_helmet_missing",
+            "line_number": 5,
+            "full_filename": "vuln6.js",
+            "filename": "vuln6.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 5,
+                "end": 5,
+                "column": {
+                    "start": 11,
+                    "end": 20
+                }
+            },
+            "sink": {
+                "start": 5,
+                "end": 5,
+                "column": {
+                    "start": 11,
+                    "end": 20
+                },
+                "content": ""
+            },
+            "parent_line_number": 5,
+            "fingerprint": "1e5cd1638ef5759f49d500beb8102fee_0",
+            "old_fingerprint": "1e5cd1638ef5759f49d500beb8102fee_2",
+            "code_extract": "var app = express();"
+        },
+        {
+            "cwe_ids": [
+                "693"
+            ],
+            "id": "javascript_express_helmet_missing",
+            "title": "Missing Helmet configuration on HTTP headers",
+            "description": "## Description\n\nHelmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately. Failing to configure Helmet for HTTP headers leaves your application vulnerable to several web attacks.\n\n## Remediations\n\n- **Do** use Helmet middleware to secure your app by adding it to your application's middleware.\n  ```javascript\n  const helmet = require(\"helmet\");\n  app.use(helmet());\n  ```\n\n## References\n\n- [Express Security Best Practices: Use Helmet](https://expressjs.com/en/advanced/best-practice-security.html#use-helmet)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_express_helmet_missing",
+            "line_number": 2,
+            "full_filename": "vuln8.js",
+            "filename": "vuln8.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 2,
+                "end": 2,
+                "column": {
+                    "start": 13,
+                    "end": 22
+                }
+            },
+            "sink": {
+                "start": 2,
+                "end": 2,
+                "column": {
+                    "start": 13,
+                    "end": 22
+                },
+                "content": ""
+            },
+            "parent_line_number": 2,
+            "fingerprint": "005ac9154ae3737946021f8397380c06_0",
+            "old_fingerprint": "005ac9154ae3737946021f8397380c06_0",
+            "code_extract": "const app = express()"
+        },
+        {
+            "cwe_ids": [
+                "693"
+            ],
+            "id": "javascript_express_reduce_fingerprint",
+            "title": "Missing server configuration to reduce server fingerprinting",
+            "description": "## Description\n\nReducing server fingerprinting enhances security by making it harder for attackers to identify the software your server is running. Server fingerprinting involves analyzing the unique responses of server software to specific requests, which can reveal information about the server's software and version. While not a direct security vulnerability, minimizing this information leakage is a proactive step to obscure details that could be used in targeted attacks.\n\n## Remediations\n\n- **Do** disable the `X-Powered-By` header in Express.js applications to prevent revealing the server's technology stack. Use the `app.disable()` method to achieve this.\n  ```javascript\n  app.disable('x-powered-by');\n  ```\n\n## References\n\n- [Express Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_express_reduce_fingerprint",
+            "line_number": 3,
+            "full_filename": "vuln5.js",
+            "filename": "vuln5.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 3,
+                "end": 3,
+                "column": {
+                    "start": 11,
+                    "end": 20
+                }
+            },
+            "sink": {
+                "start": 3,
+                "end": 3,
+                "column": {
+                    "start": 11,
+                    "end": 20
+                },
+                "content": ""
+            },
+            "parent_line_number": 3,
+            "fingerprint": "bffaaa3ac70a2c2ce54543457372996a_0",
+            "old_fingerprint": "bffaaa3ac70a2c2ce54543457372996a_1",
+            "code_extract": "var app = express()"
+        },
+        {
+            "cwe_ids": [
+                "693"
+            ],
+            "id": "javascript_express_reduce_fingerprint",
+            "title": "Missing server configuration to reduce server fingerprinting",
+            "description": "## Description\n\nReducing server fingerprinting enhances security by making it harder for attackers to identify the software your server is running. Server fingerprinting involves analyzing the unique responses of server software to specific requests, which can reveal information about the server's software and version. While not a direct security vulnerability, minimizing this information leakage is a proactive step to obscure details that could be used in targeted attacks.\n\n## Remediations\n\n- **Do** disable the `X-Powered-By` header in Express.js applications to prevent revealing the server's technology stack. Use the `app.disable()` method to achieve this.\n  ```javascript\n  app.disable('x-powered-by');\n  ```\n\n## References\n\n- [Express Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_express_reduce_fingerprint",
+            "line_number": 5,
+            "full_filename": "vuln6.js",
+            "filename": "vuln6.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 5,
+                "end": 5,
+                "column": {
+                    "start": 11,
+                    "end": 20
+                }
+            },
+            "sink": {
+                "start": 5,
+                "end": 5,
+                "column": {
+                    "start": 11,
+                    "end": 20
+                },
+                "content": ""
+            },
+            "parent_line_number": 5,
+            "fingerprint": "e38d830c07939d49522645c07960293f_0",
+            "old_fingerprint": "e38d830c07939d49522645c07960293f_2",
+            "code_extract": "var app = express();"
+        },
+        {
+            "cwe_ids": [
+                "693"
+            ],
+            "id": "javascript_express_reduce_fingerprint",
+            "title": "Missing server configuration to reduce server fingerprinting",
+            "description": "## Description\n\nReducing server fingerprinting enhances security by making it harder for attackers to identify the software your server is running. Server fingerprinting involves analyzing the unique responses of server software to specific requests, which can reveal information about the server's software and version. While not a direct security vulnerability, minimizing this information leakage is a proactive step to obscure details that could be used in targeted attacks.\n\n## Remediations\n\n- **Do** disable the `X-Powered-By` header in Express.js applications to prevent revealing the server's technology stack. Use the `app.disable()` method to achieve this.\n  ```javascript\n  app.disable('x-powered-by');\n  ```\n\n## References\n\n- [Express Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html)",
+            "documentation_url": "https://docs.bearer.com/reference/rules/javascript_express_reduce_fingerprint",
+            "line_number": 2,
+            "full_filename": "vuln8.js",
+            "filename": "vuln8.js",
+            "category_groups": [
+                "PII",
+                "Personal Data"
+            ],
+            "source": {
+                "start": 2,
+                "end": 2,
+                "column": {
+                    "start": 13,
+                    "end": 22
+                }
+            },
+            "sink": {
+                "start": 2,
+                "end": 2,
+                "column": {
+                    "start": 13,
+                    "end": 22
+                },
+                "content": ""
+            },
+            "parent_line_number": 2,
+            "fingerprint": "59b133d8dae8dac56d928435c110cf3f_0",
+            "old_fingerprint": "59b133d8dae8dac56d928435c110cf3f_0",
+            "code_extract": "const app = express()"
+        }
+    ]
+}

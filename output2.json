@@ -1,0 +1,138 @@
+{
+  "version": "v2.9.0-beta.3",
+  "id": "114aa025-6a15-4942-abed-675bbfec5328",
+  "repositoryID": "00000000-0000-0000-0000-000000000000",
+  "repositoryName": "",
+  "workspaceID": "00000000-0000-0000-0000-000000000000",
+  "workspaceName": "",
+  "status": "success",
+  "errors": "",
+  "createdAt": "2024-08-29T00:06:15.409135013Z",
+  "finishedAt": "2024-08-29T00:06:24.637020378Z",
+  "analysisVulnerabilities": [
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "114aa025-6a15-4942-abed-675bbfec5328",
+      "createdAt": "2024-08-29T00:06:24.637087836Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "d591a7cc-5af5-4567-8593-fdb8c097cb99",
+        "line": "13",
+        "column": "2",
+        "confidence": "MEDIUM",
+        "file": "vuln2.exs",
+        "code": "secret_key_base: \"Ly33YFZ6HdrB5T91p7jb66eyJ8h3E2zBvphHSl9490badN5h\",",
+        "details": "(1/1) * Possible vulnerability detected: Potential Hard-coded credential\nThe software contains hard-coded credentials, such as a password or cryptographic key, which it uses for its own inbound authentication, outbound communication to external components, or encryption of internal data. For more information checkout the CWE-798 (https://cwe.mitre.org/data/definitions/798.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Leaks",
+        "severity": "CRITICAL",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-LEAKS-25",
+        "vulnHash": "c23fcee04eba8bffbe6fbd400fb94b9f7ffb5d5b6a74fab7835e2e33faf6ba16",
+        "deprecatedHashes": [
+          "2e211f28bf4b46f91923d62c0879a22fadc7339826d85fe9a72c71b57821898e",
+          "b33c0f8655ffe517f7f2053b32ebd8a6ede99e43c86ced012867cb49fbcc7e98"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "114aa025-6a15-4942-abed-675bbfec5328",
+      "createdAt": "2024-08-29T00:06:24.637180086Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "6da68df1-fac9-4939-b952-82417d5390de",
+        "line": "11",
+        "column": "14",
+        "confidence": "MEDIUM",
+        "file": "vuln5.js",
+        "code": "sequelize.query('SELECT * FROM Products WHERE name LIKE ' +  req.body.username);",
+        "details": "(1/1) * Possible vulnerability detected: SQL Injection\nSQL queries often need to use a hardcoded SQL string with a dynamic parameter coming from a user request. Formatting a string to add those parameters to the request is a bad practice as it can result in an SQL injection. The safe way to add parameters to a SQL query is to use SQL binding mechanisms. For more information checkout the CWE-564 (https://cwe.mitre.org/data/definitions/564.html) and OWASP A1:2017 (https://owasp.org/www-project-top-ten/2017/A1_2017-Injection.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "JavaScript",
+        "severity": "HIGH",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVASCRIPT-53",
+        "vulnHash": "d64d9028a76d96cd401ceeec88821b9adbb1cd4118cfefb94ed329826f92ec57",
+        "deprecatedHashes": [
+          "1966810427f8ec9f1f90fb3c8ea519f727e4da7f168e42dff594cb587afc2d37",
+          "3d3db2510a0b6a230854b691c310247bb24a1dbe24fbf1229f7578d71627ea55"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "114aa025-6a15-4942-abed-675bbfec5328",
+      "createdAt": "2024-08-29T00:06:24.637180503Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "a021bcad-77b0-4ab6-9313-f3a33262a452",
+        "line": "8",
+        "column": "5",
+        "confidence": "LOW",
+        "file": "vuln7.js",
+        "code": "ctx.redirect(url);",
+        "details": "(1/1) * Possible vulnerability detected: Redirect to unknown path\nSanitizing untrusted URLs is an important technique for preventing attacks such as request forgeries and malicious redirections. Often, this is done by checking that the host of a URL is in a set of allowed hosts. For more information checkout the CWE-20 (https://cwe.mitre.org/data/definitions/20.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "JavaScript",
+        "severity": "HIGH",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVASCRIPT-22",
+        "vulnHash": "b498c72f8917d9b16ead4302b4e48812e42f002bdb525b64d79d5d83d5850243",
+        "deprecatedHashes": [
+          "b9f81c200940ec8c891552a291796157a525e413eea28771f454089c15573f24",
+          "9d866c6fd4f95f9529a517ceda9df26ffeea785fd08a22da7bcc1aee12af31dc"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "114aa025-6a15-4942-abed-675bbfec5328",
+      "createdAt": "2024-08-29T00:06:24.637181253Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "40dd29a5-856a-4e8e-af13-dbcb989da109",
+        "line": "70",
+        "column": "10",
+        "confidence": "LOW",
+        "file": "vuln3.java",
+        "code": "} catch (Exception e) {",
+        "details": "(1/1) * Possible vulnerability detected: Information Exposure Through An Error Message\nThe sensitive information may be valuable information on its own (such as a password), or it may be useful for launching other, more deadly attacks. For more information checkout the CWE-209 (https://cwe.mitre.org/data/definitions/209.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "HIGH",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVA-63",
+        "vulnHash": "0838087475ad58a0a580e8177b8c13fb90e8597363b332e592589c2518045130",
+        "deprecatedHashes": [
+          "4b8e007ce10de2142afef6f1add4ec15d49893661fe8d4580e832f3f5a5982b5",
+          "127164c9780c9c80dcec792f94c720eb2db674912a9a269160e15de2551bbdc6"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    }
+  ]
+}
