@@ -18,7 +18,11 @@ const downloadURL = (url, onend) => {
     request(opts)
       .on('data', ()=>{})
       .on('end', () => onend())
-      .on('error', (err) => console.log(err, 'controller.url.download.error'))
+      .on('error', (err) => {
+        console.log('Error occurred during URL download', 'controller.url.download.error');
+        // If needed, log non-sensitive error details or a generic error message
+        // console.log(`Error type: ${err.name}`, 'controller.url.download.error');
+      })
 }
 
 module.exports = router
