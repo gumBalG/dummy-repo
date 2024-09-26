@@ -10,7 +10,7 @@ import Config
 # you can enable the server option below.
 config :console_api, ConsoleApiWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "Ly33YFZ6HdrB5T91p7jb66eyJ8h3E2zBvphHSl9490badN5h",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   server: false
 
 config :exvcr,
