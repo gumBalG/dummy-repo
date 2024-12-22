@@ -1,2 +1,1 @@
 bearer scan ./ --config-file bearer.yml > bearer_output.json
-docker run -v /var/run/docker.sock:/var/run/docker.sock -v /Users/gabriel.guedes/Desktop/documentos/repos/dummy-repo:/src/horusec horuszup/horusec-cli:v2.9.0-beta.3 horusec start -p /src/horusec -P /Users/gabriel.guedes/Desktop/documentos/repos/dummy-repo -o json -O /src/horusec/output2.json
